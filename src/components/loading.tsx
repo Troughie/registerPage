@@ -1,5 +1,3 @@
-import React from "react";
-
 const Loading = () => {
   return (
     <div className="flex h-screen opacity-65 items-center justify-center bg-white">

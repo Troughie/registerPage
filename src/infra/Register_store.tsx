@@ -1,5 +1,4 @@
 import { useForm } from "react-hook-form";
-import SelectGroupOne from "../components/SelectGroupOne";
 import SweetAlert2 from "react-sweetalert2";
 import { images } from "../assets";
 import { DefaultLayout } from ".";

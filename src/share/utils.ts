@@ -31,11 +31,23 @@ export function getWithExpiry(key: string) {
   return item.value;
 }
 
-export function fileToBase64(file: any) {
+export function fileToBase64(file: File): Promise<string> {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
     reader.readAsDataURL(file);
-    reader.onload = () => resolve(reader.result.split(",")[1]);
+
+    reader.onload = () => {
+      if (reader.result) {
+        if (typeof reader.result === "string") {
+          resolve(reader.result.split(",")[1]);
+        } else {
+          reject(new Error("Unexpected result type: ArrayBuffer"));
+        }
+      } else {
+        reject(new Error("FileReader result is null"));
+      }
+    };
+
     reader.onerror = (error) => reject(error);
   });
 }

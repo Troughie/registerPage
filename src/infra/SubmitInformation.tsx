@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 import { inputDataRegister } from "../model/input.model";
 import SweetAlert2 from "react-sweetalert2";
@@ -9,7 +9,7 @@ import ChildInformation from "../components/childInfomation";
 import InformationLayout from "./layout/informationLayout";
 import { inputPersonRegister } from "../model/input.model";
 import { addressSelectInter } from "../types/data_register";
-import { dataUseForm, data_person, data_store } from "../types/data_submit";
+import { dataUseForm } from "../types/data_submit";
 import instance from "../api";
 import pathRoutes from "../share/path";
 import { fileToBase64, getWithExpiry } from "../share/utils";
@@ -74,7 +74,7 @@ const SubmitInformation = () => {
     handleSubmit,
     formState: { errors },
     setValue,
-  } = useForm({ mode: "all", reValidateMode: "onChange" });
+  } = useForm<dataUseForm>({ mode: "all", reValidateMode: "onChange" });
 
   const submitHandler = () => {
     setIsLoading(true);
@@ -110,10 +110,10 @@ const SubmitInformation = () => {
 
     const formData = new FormData();
     //Chuyển đổi file thành base64
-    const back1 = await fileToBase64(back[0]);
-    const logo1 = await fileToBase64(logo[0]);
-    const bg1 = await fileToBase64(bg[0]);
-    const front1 = await fileToBase64(front[0]);
+    const back1 = await fileToBase64(back);
+    const logo1 = await fileToBase64(logo);
+    const bg1 = await fileToBase64(bg);
+    const front1 = await fileToBase64(front);
     // Thêm dữ liệu PersonDto vào formData
     formData.append("back", back1);
     formData.append("front", front1);
@@ -144,7 +144,7 @@ const SubmitInformation = () => {
           setSwalProps({
             show: true,
             title: "Error",
-            text: errors?.data?.message,
+            text: err?.data?.message,
           });
       });
   };

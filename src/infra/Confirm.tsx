@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 import { images } from "../assets";
 import { useForm } from "react-hook-form";
@@ -15,11 +15,7 @@ const Confirm = () => {
   const navigate = useNavigate();
   const searchParams = new URLSearchParams(location.search);
   const id = searchParams.get("id");
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  const { register, handleSubmit } = useForm();
 
   const submitOTP = async (data: any) => {
     const formData = { otp: data?.OTP, tokenID: id };

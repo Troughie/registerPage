@@ -119,7 +119,6 @@ export const inputPersonRegister: inputRegister[] = [
     type: "date",
   },
 ];
-
 export const addressSelect: addressSelectInter[] = [
   {
     label: "Thành phố",
@@ -129,7 +128,6 @@ export const addressSelect: addressSelectInter[] = [
     label: "Tinh thanh",
     field: "district",
   },
-  ,
   {
     label: "Phường xã",
     field: "ward",

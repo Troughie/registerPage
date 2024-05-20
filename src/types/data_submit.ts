@@ -16,6 +16,13 @@ export interface dataUseForm {
   store_name: string;
 }
 
+export interface responseData {
+  message: string;
+  data: any;
+  code: number;
+  error?: string;
+}
+
 export interface data_store {
   bg: File;
   logoStore: File;
