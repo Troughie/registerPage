@@ -15,7 +15,7 @@ const InputImg: React.FC<props> = ({
   errors,
   validator,
 }) => {
-  const [img, setImg] = useState(null);
+  const [img, setImg] = useState<string | ArrayBuffer | null>(null);
   const handleFileInputChange = (event: any) => {
     const file = event.target.files[0];
     if (file) {
@@ -41,11 +41,9 @@ const InputImg: React.FC<props> = ({
           }}
         />
         <div className="rounded-lg h-40 md:w-80 md:h-60 shadow-lg mb-5 mx-auto flex justify-center">
-          <img
-            src={img ?? ""}
-            alt=""
-            className="w-auto h-auto  rounded-md shadow-md object-contain"
-          />
+          {img && (
+            <img src={typeof img === "string" ? img : ""} alt="Selected" />
+          )}
         </div>
       </div>
     </div>

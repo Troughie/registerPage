@@ -9,6 +9,10 @@ import Loading from "../components/loading";
 import { registerStore } from "../model/input.model";
 import CustomInput from "../commons/input";
 
+interface CustomCSSProperties extends React.CSSProperties {
+  "--image-url"?: string;
+}
+
 const Register_store = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [swalProps, setSwalProps] = useState({});
@@ -17,6 +21,11 @@ const Register_store = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
+
+  const style: CustomCSSProperties = {
+    "--image-url": `url(${images.bg_images})`,
+    backgroundPosition: `100% 80%`,
+  };
 
   const onSubmit = async (data: any) => {
     setIsLoading(true);
@@ -46,20 +55,17 @@ const Register_store = () => {
     <DefaultLayout>
       <SweetAlert2
         {...swalProps}
-        onConfirm={(result) => {
+        onConfirm={() => {
           window.location.reload();
         }}
       />
       <div
-        style={{
-          "--image-url": `url(${images.bg_images})`,
-          backgroundPosition: `100% 80%`,
-        }}
+        style={style}
         className={`h-screen relative left-0 md:bg-[image:var(--image-url)]`}
       >
         <img className="md:hidden" src={images.bg_images} alt="" />
         <div className="flex flex-col w-full relative">
-          <div className=" rounded-2xl  md:w-1/3 border absolute mx-4 top-10 md:right-10 border-stroke bg-white shadow-default shadow-lg">
+          <div className=" rounded-2xl  md:w-1/3 border absolute mx-4 top-10 md:right-10 border-stroke bg-white shadow-lg">
             <div className="border-b border-stroke py-4 px-6.5 ">
               <h3 className="font-bold  text-black ">
                 Become a Partner Restaurant with Step GoFood
