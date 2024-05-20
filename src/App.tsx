@@ -5,8 +5,6 @@ import pathRoutes from "./share/path";
 import Confirm from "./infra/Confirm";
 import { useEffect, useState } from "react";
 import Loading from "./components/loading";
-import InforPerson from "./infra/uploadInforPerson";
-import UploadInforStore from "./infra/uploadInforStore";
 
 function App() {
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -28,11 +26,6 @@ function App() {
         <Route path={pathRoutes.index.path} element={<Register />} />
         <Route path={pathRoutes.information.path} element={<Information />} />
         <Route path={pathRoutes.confirm.path} element={<Confirm />} />
-        <Route path={pathRoutes.upload.path} element={<InforPerson />} />
-        <Route
-          path={pathRoutes.inforStore.path}
-          element={<UploadInforStore />}
-        />
       </Routes>
     </>
   );

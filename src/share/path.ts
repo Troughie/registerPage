@@ -20,9 +20,5 @@ const pathRoutes: Record<string, pathRoute> = {
     path: "/person",
     title: "ContinueConfirm",
   },
-  inforStore: {
-    path: "/store",
-    title: "Store information",
-  },
 };
 export default pathRoutes;

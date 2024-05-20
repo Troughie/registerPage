@@ -8,32 +8,27 @@ interface registerOption {
   register: any;
 }
 const optionMainDish: option[] = [
-  { value: "pho", label: "Pho" },
-  { value: "banhmi", label: "Banh mi" },
-  { value: "rice", label: "Rice" },
+  { value: "pho", label: "Phở" },
+  { value: "banhmi", label: "Bánh mì" },
+  { value: "rice", label: "Cơm" },
   { value: "pizza", label: "Pizza" },
-  { value: "milk", label: "Milk Tea" },
-  { value: "snack", label: "Snacks" },
-  { value: "ff", label: "Fast food" },
-  { value: "cf", label: "Coffee , tea & juice" },
+  { value: "milk", label: "Trà sữa" },
+  { value: "snack", label: "Ăn vặt" },
+  { value: "ff", label: "Thức ăn nhanh" },
+  { value: "cf", label: "Coffee , trà và nước ép" },
   { value: "desert", label: "Desert" },
-  { value: "other", label: "Other" },
+  { value: "other", label: "Các loại khác" },
 ];
 const SelectGroupOne: React.FC<registerOption> = ({ register }) => {
   return (
     <div className="mb-4.5">
-      {/* <label className="mb-2.5 block text-black dark:text-white">
-        {" "}
-       
-      </label> */}
-
       <div className="relative z-20 bg-transparent ">
         <select
-          {...register("main_dish")}
-          className={`relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 px-5 outline-none transition focus:border-primary active:border-primary`}
+          {...register("mainDish")}
+          className={`bg-gray-50 w-full my-10 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400`}
         >
           <option value="" className="text-body">
-            Main dish
+            Món kinh doanh chính
           </option>
           {optionMainDish.map((dish) => (
             <option key={dish.value} value={dish.value} className="text-body">

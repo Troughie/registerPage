@@ -15,9 +15,10 @@ export interface images_register {
   value: string;
 }
 
-export interface addressSelect {
+export interface addressSelectInter {
   label: string;
   field: string;
+  validator?: any;
 }
 
 export interface inputRegister {

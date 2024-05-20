@@ -6,6 +6,8 @@ import { DefaultLayout } from ".";
 import instance from "../api";
 import { useState } from "react";
 import Loading from "../components/loading";
+import { registerStore } from "../model/input.model";
+import CustomInput from "../commons/input";
 
 const Register_store = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -24,7 +26,7 @@ const Register_store = () => {
         setSwalProps({
           show: true,
           title: "Success",
-          text: res,
+          text: res?.data?.message,
         });
         setIsLoading(false);
       })
@@ -32,7 +34,7 @@ const Register_store = () => {
         setSwalProps({
           show: true,
           title: "Error",
-          text: errors,
+          text: errors?.data?.message,
         });
         setIsLoading(false), console.log(errors);
       });
@@ -68,58 +70,16 @@ const Register_store = () => {
             </div>
             <form onSubmit={handleSubmit(onSubmit)} className="rounded-2xl">
               <div className="p-6.5">
-                <div className="mb-4.5 flex flex-col gap-6 xl:flex-row">
-                  <div className="w-full ">
-                    <input
-                      type="text"
-                      placeholder="Enter your name restaurant"
-                      {...register("name")}
-                      className="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter  "
-                    />
-                  </div>
-                </div>
-                <div className="mb-4.5 flex flex-col gap-6 xl:flex-row">
-                  <div className="w-full ">
-                    <input
-                      type="text"
-                      placeholder="Representative"
-                      {...register("representative")}
-                      className="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter "
-                    />
-                  </div>
-                </div>
-                <div className="mb-4.5 flex flex-col gap-6 xl:flex-row">
-                  <div className="w-full ">
-                    <input
-                      type="text"
-                      placeholder="Business address"
-                      {...register("address")}
-                      className="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter "
-                    />
-                  </div>
-                </div>
-
-                <div className="mb-4.5 flex flex-col gap-6 xl:flex-row">
-                  <div className="w-full xl:w-1/2">
-                    <input
-                      type="Email"
-                      placeholder="Email"
-                      {...register("email")}
-                      className="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter "
-                    />
-                  </div>
-
-                  <div className="w-full xl:w-1/2">
-                    <input
-                      type="text"
-                      placeholder="Phone"
-                      {...register("phone")}
-                      className="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter "
-                    />
-                  </div>
-                </div>
-
-                <SelectGroupOne register={register} />
+                {registerStore.map((el) => (
+                  <CustomInput
+                    key={el.field}
+                    errors={errors}
+                    register={register}
+                    field={el.field}
+                    label={el.label}
+                    validator={el.validator}
+                  />
+                ))}
 
                 <button className="flex w-full justify-center rounded bg-primary p-3 font-medium text-gray hover:bg-opacity-90">
                   Send Message

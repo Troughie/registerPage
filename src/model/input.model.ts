@@ -1,5 +1,5 @@
 import {
-  addressSelect,
+  addressSelectInter,
   data_register,
   idInputValue,
   inputRegister,
@@ -25,141 +25,91 @@ export const inputModelRegisterStore: data_register[] = [
 
 export const inputDataRegister: inputRegister[] = [
   {
-    label: "Name restaurant",
+    label: "Tên cửa hàng",
     field: "store_name",
     validator: {
-      required: { value: true, message: "Name restaurant is required" },
+      required: { value: true, message: "Hoàn tất trường này" },
     },
   },
   {
-    label: "Email contact store",
+    label: "Email liên hệ",
     field: "email",
     validator: {
       required: {
         value: true,
-        message: "email is required",
+        message: "Hoàn tất trường này",
       },
       pattern: {
         value: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
-        message: "valid email required",
+        message: "Định dạng mail chưa chính xác ex: xxxxxx@xxxx.xxx",
       },
     },
   },
   {
-    label: "Personal tax code",
-    field: "code",
-    validator: {
-      required: {
-        value: true,
-        message: "Personal tax code is required",
-      },
-    },
-  },
-  {
-    label: "Phone contact store",
+    label: "Số điện thoại liên hệ",
     field: "phone",
     validator: {
       required: {
         value: true,
-        message: "Phone is required",
+        message: "Hoàn tất trường này",
       },
       minLength: {
         value: 10,
-        message: "At least 10 characters",
+        message: "Số điện thoại phải có 10 ký tự",
       },
     },
-  },
-
-  {
-    label: "Name bank",
-    field: "banks",
-    validator: {
-      required: {
-        value: true,
-        message: "Name bank is required",
-      },
-    },
-  },
-  {
-    label: "Card bank",
-    field: "card",
-    validator: {
-      required: {
-        value: true,
-        message: "Card bank is required",
-      },
-    },
-  },
-  {
-    label: "Address detail (Optional)",
-    field: "address",
-    validator: {},
   },
 ];
 
-export const inputPersonRegister: inputRegister[] = [
+export const registerStore: inputRegister[] = [
   {
-    label: "Username",
+    label: "Tên người đăng ký",
     field: "name",
     validator: {
       required: { value: true, message: "Hoàn tất trường này" },
     },
   },
   {
-    label: "Day of birth",
-    field: "date",
+    label: "Email (lưu ý phải điền chính xác email)",
+    field: "email",
     validator: {
       required: {
         value: true,
         message: "Hoàn tất trường này",
       },
+      pattern: {
+        value: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+        message: "Định dạng mail chưa chính xác ex: xxxxxx@xxxx.xxx",
+      },
     },
-    type: "date",
   },
   {
-    label: "Nationality",
-    field: "nationality",
+    label: "Số điện thoại",
+    field: "phone",
     validator: {
       required: {
         value: true,
         message: "Hoàn tất trường này",
       },
-    },
-  },
-  {
-    label: "Số CMND/Hộ chiếu",
-    field: "card",
-    validator: {
-      required: {
-        value: true,
-        message: "Hoàn tất trường này",
+      minLength: {
+        value: 10,
+        message: "Số điện thoại phải có 10 ký tự",
       },
     },
   },
+];
+
+export const inputPersonRegister: inputRegister[] = [
   {
-    label: "Ngày ngày cấp",
-    field: "create_at",
+    label: "Họ và tên",
+    field: "name",
     validator: {
-      required: {
-        value: true,
-        message: "Hoàn tất trường này",
-      },
-    },
-    type: "date",
-  },
-  {
-    label: "Nơi cấp",
-    field: "Where",
-    validator: {
-      required: {
-        value: true,
-        message: "Hoàn tất trường này",
-      },
+      required: { value: true, message: "Hoàn tất trường này" },
     },
   },
   {
-    label: "Ngày hết hạn",
-    field: "expired",
+    label: "Ngày tháng năm sinh",
+    field: "dob",
     validator: {
       required: {
         value: true,
@@ -170,7 +120,7 @@ export const inputPersonRegister: inputRegister[] = [
   },
 ];
 
-export const addressSelect: addressSelect[] = [
+export const addressSelect: addressSelectInter[] = [
   {
     label: "Thành phố",
     field: "province",
@@ -181,7 +131,7 @@ export const addressSelect: addressSelect[] = [
   },
   ,
   {
-    label: "Phuong xa",
+    label: "Phường xã",
     field: "ward",
   },
 ];

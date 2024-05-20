@@ -6,6 +6,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 import instance from "../api";
 import Loading from "../components/loading";
 import SweetAlert2 from "react-sweetalert2";
+import pathRoutes from "../share/path";
+import { setWithExpiry } from "../share/utils";
 const Confirm = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [swalProps, setSwalProps] = useState({});
@@ -18,6 +20,7 @@ const Confirm = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
+
   const submitOTP = async (data: any) => {
     const formData = { otp: data?.OTP, tokenID: id };
     setIsLoading(true);
@@ -27,19 +30,21 @@ const Confirm = () => {
         setSwalProps({
           show: true,
           title: "Success",
-          text: res.data.message,
+          text: res?.data?.message,
         });
         console.log(res);
-
-        setIsLoading(false);
+        setTimeout(() => setIsLoading(false), 1000);
+        setWithExpiry("token", res?.data, 24 * 60 * 60 * 1000);
+        navigate(pathRoutes.information.path);
       })
       .catch((errors) => {
         setSwalProps({
           show: true,
           title: "Error",
-          text: errors.response.data.message,
+          text: errors?.data?.message,
         });
-        setIsLoading(false), console.log(errors);
+        setTimeout(() => setIsLoading(false), 1000);
+        console.log(errors);
       });
   };
   return isLoading ? (
