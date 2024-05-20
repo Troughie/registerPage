@@ -136,6 +136,7 @@ const SubmitInformation = () => {
       .then((res) => {
         setIsLoading(false);
         localStorage.removeItem("token");
+        navigate(pathRoutes.result.path);
         console.log(res);
       })
       .catch((err) => {
